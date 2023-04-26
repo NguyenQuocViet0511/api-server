@@ -15,6 +15,8 @@ use  App\Repositories\User\UserRepository;
 use  App\Repositories\User\UserRepositoryInterface;
 use  App\Repositories\BillInfo\BillInfoRepository;
 use  App\Repositories\BillInfo\BillInfoRepositoryInterface;
+use  App\Repositories\TimeSheet\TimeSheetRepository;
+use  App\Repositories\TimeSheet\TimeSheetRepositoryInterface;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
         BillRepositoryInterface::class => BillRepository::class,
         UserRepositoryInterface::class => UserRepository::class,
         BillInfoRepositoryInterface::class => BillInfoRepository::class,
+        TimeSheetRepositoryInterface::class => TimeSheetRepository::class,
+
     ];
 
     public function register()

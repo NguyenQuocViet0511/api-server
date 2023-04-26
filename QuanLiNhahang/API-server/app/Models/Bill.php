@@ -16,15 +16,19 @@ class Bill extends Model
      *
      * @var array<int, string>
      */
-    protected $table = 'bill';
-    protected $primaryKey = 'id';
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+    protected $table = 'bill'; //name table
+    protected $keyType = 'string';  //type key
+    public $incrementing = false; // incrementing not
     protected $fillable = [
+        'id',
         'timein',
         'timeout',
         'discount',
         'sum',
         'status',
-        'id_table',
         'id_user',
 
     ];

@@ -2,16 +2,16 @@
 
 namespace App\Repositories\Table;
 
-use App\Models\Table;
-use App\Repositories\Table\TableRepositoryInterface;
+use App\Models\TimeSheet;
+use App\Repositories\TimeSheet\TimeSheetRepositoryInterface;
 use App\Repositories\BaseRepository;
 
-class TableRepository extends BaseRepository implements TableRepositoryInterface
+class TimeSheetRepository extends BaseRepository implements TimeSheetRepositoryInterface
 {
 
     public function __construct()
     {
-        $this-> model = new Table();
+        $this-> model = new TimeSheet();
     }
 
     public function getByStatus($status){

@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Repositories\Table\TableRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Services\BaseService;
 
-class TableService extends BaseService
+class CategoryService extends BaseService
 {
-    public function __Construct(TableRepositoryInterface $tableRepositoryInterface)
+    public function __Construct(CategoryRepositoryInterface $CategoryRepositoryInterface)
     {
-        $this->repo = $tableRepositoryInterface;
+        $this->repo = $CategoryRepositoryInterface;
     }
 
     public function getAll()
@@ -30,9 +30,6 @@ class TableService extends BaseService
     {
         try {
             $this->repo->beginTran();
-            $data['id'] = generateRandomString();
-            $data['name'] = 'B1';
-            $data['status'] = 'No';
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;
@@ -67,9 +64,6 @@ class TableService extends BaseService
         return true;
     }
 
-    public function ShowStatus($status)
-    {
-        return $this->repo->getByStatus($status);
-    }
+
 
 }

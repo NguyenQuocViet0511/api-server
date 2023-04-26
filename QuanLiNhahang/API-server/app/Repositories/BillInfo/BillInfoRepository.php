@@ -3,7 +3,7 @@
 namespace App\Repositories\BillInfo;
 
 use App\Models\BillInfo;
-use App\Repositories\Bill\BillInfoRepositoryInterface;
+use App\Repositories\BillInfo\BillInfoRepositoryInterface;
 use App\Repositories\BaseRepository;
 
 class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInterface

@@ -2,14 +2,14 @@
 
 namespace App\Services;
 
-use App\Repositories\Table\TableRepositoryInterface;
+use App\Repositories\TimeSheet\TimeSheetRepositoryInterface;
 use App\Services\BaseService;
 
-class TableService extends BaseService
+class TimeSheetService extends BaseService
 {
-    public function __Construct(TableRepositoryInterface $tableRepositoryInterface)
+    public function __Construct(TimeSheetRepositoryInterface $TimeSheetRepositoryInterface)
     {
-        $this->repo = $tableRepositoryInterface;
+        $this->repo = $TimeSheetRepositoryInterface;
     }
 
     public function getAll()
@@ -31,8 +31,6 @@ class TableService extends BaseService
         try {
             $this->repo->beginTran();
             $data['id'] = generateRandomString();
-            $data['name'] = 'B1';
-            $data['status'] = 'No';
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;

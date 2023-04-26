@@ -20,13 +20,16 @@ class Table extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    protected $table = 'tables';
-    protected $primaryKey = 'id';
+    protected $table = 'tablefood'; //name table
+    protected $keyType = 'string';  //type key
+    public $incrementing = false; // incrementing not
     protected $fillable = [
+        'id',
         'name',
         'status',
-        'created_at',
-        'updated_at'
+        'id_bill',
+        'created_by',
+        'updated_by'
     ];
 
 }

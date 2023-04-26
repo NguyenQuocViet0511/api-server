@@ -1,6 +1,7 @@
 <?php
 return [
     'id' => 'Mã',
+    'name' => 'Thông Tin Hóa Đơn',
     'add-success' => 'Thêm bàn thành công',
     'add-fail' => 'Thêm không thành công',
     'edit-success' => 'Cập nhật thành công',

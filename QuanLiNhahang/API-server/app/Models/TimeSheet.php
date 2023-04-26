@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Category extends Model
+class TimeSheet extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -20,10 +20,13 @@ class Category extends Model
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    protected $table = 'category';
-    protected $primaryKey = 'id';
+    protected $table = 'timesheet'; //name table
+    protected $keyType = 'string'; //type key
+    public $incrementing = false; // incrementing not
     protected $fillable = [
-        'name',
+        'datein',
+        'id_user',
+        'status',
     ];
 
 }
