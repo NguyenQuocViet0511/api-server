@@ -64,6 +64,9 @@ class FoodService extends BaseService
         return true;
     }
 
+    public function GetByIdCategory(){
+        return $this -> repo-> GetByIdCategory();
+    }
 
 
 }

@@ -17,7 +17,7 @@ class FoodController extends BaseApiController
     public function getAll()
     {
 
-        $data = $this->_foodService->getAll();
+        $data = $this -> _foodService-> GetByIdCategory();
         return $this->successResponse($data, __('validation.list', ['attribute' => __('food.name')]));
 
     }
@@ -61,10 +61,13 @@ class FoodController extends BaseApiController
     public function show(Request $rq)
     {
 
-        $table = $rq->all();
-        $result = $this->_foodService->ShowStatus($table['status']);
-        return $this->successResponse($result, __('validation.list', ['attribute' => __('food.name')]));
+        // $table = $rq->all();
+        // $result = $this->_foodService->ShowStatus($table['status']);
+        // return $this->successResponse($result, __('validation.list', ['attribute' => __('food.name')]));
+
+        // return $this->successResponse( $result, __('food.delete-success'));
 
     }
+
 
 }

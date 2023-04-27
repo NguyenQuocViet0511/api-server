@@ -40,7 +40,7 @@ Route::prefix('food')->group(function () {
     Route::get('create', [FoodController::Class,'create']);
     Route::get('update', [FoodController::Class,'update']);
     Route::get('delete', [FoodController::Class,'delete']);
-    Route::post('show', [FoodController::Class,'show']);
+    Route::get('show', [FoodController::Class,'show']);
 
 
 });

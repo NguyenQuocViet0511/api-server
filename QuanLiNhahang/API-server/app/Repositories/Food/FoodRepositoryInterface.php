@@ -8,4 +8,6 @@ interface FoodRepositoryInterface extends BaseRepositoryInterface
 {
 
 
+    public function GetByIdCategory();
+
 }
