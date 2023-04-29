@@ -37,9 +37,9 @@ Route::prefix('tables')->group(function () {
 
 Route::prefix('food')->group(function () {
     Route::get('list', [FoodController::Class,'getAll']);
-    Route::get('create', [FoodController::Class,'create']);
-    Route::get('update', [FoodController::Class,'update']);
-    Route::get('delete', [FoodController::Class,'delete']);
+    Route::post('create', [FoodController::Class,'create']);
+    Route::post('update', [FoodController::Class,'update']);
+    Route::post('delete', [FoodController::Class,'delete']);
     Route::get('show', [FoodController::Class,'show']);
 
 
