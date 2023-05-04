@@ -53,7 +53,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
         return $result;
     }
+    public function getOderById($columns,$type,$limit)
+    {
+        return  $this-> model -> orderBy($columns,$type) -> limit($limit) -> first();
 
+    }
     public function create($attributes = [])
     {
         return $this->model->create($attributes);

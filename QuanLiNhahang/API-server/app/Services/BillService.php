@@ -30,7 +30,8 @@ class BillService extends BaseService
     {
         try {
             $this->repo->beginTran();
-            $data['id'] = generateRandomString();
+            $getId = $this ->  repo -> getOderById('id','desc',1);
+            $data['id'] = insertStringID('HD',$getId,6);
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;

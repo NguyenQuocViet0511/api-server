@@ -46,11 +46,10 @@ class TableController extends BaseApiController
     {
         $table = $rq->all();
         $result = $this->_tableService->delete($table['id']);
-        dd($result);
         if ($result) {
-            return $this->successResponse("", __('Table.delete-success'));
+            return $this->successResponse($result, __('Table.delete-success'));
         }
-        return $this->successResponse("", __('Table.delete-fail'));
+        return $this->successResponse($result, __('Table.delete-fail'));
     }
 
     public function show(Request $rq)

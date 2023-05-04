@@ -30,8 +30,8 @@ class TableService extends BaseService
     {
         try {
             $this->repo->beginTran();
-            $data['id'] = generateRandomString();
-            $data['name'] = 'B1';
+            $getId = $this ->  repo -> getOderById('id','desc',1);
+            $data['id'] = insertStringID('TB',$getId,6);
             $data['status'] = 'No';
             $this->repo->create($data);
             $this->repo->commitTran();

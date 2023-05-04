@@ -26,10 +26,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('tables')->group(function () {
     Route::get('list', [TableController::Class,'getAll']);
-    Route::get('create', [TableController::Class,'create']);
+    Route::post('create', [TableController::Class,'create']);
     Route::post('update', [TableController::Class,'update']);
-    Route::delete('delete', [TableController::Class,'delete']);
-    Route::post('show', [TableController::Class,'show']);
+    Route::post('delete', [TableController::Class,'delete']);
+    Route::get('show', [TableController::Class,'show']);
 
 
 });
@@ -50,7 +50,7 @@ Route::prefix('category')->group(function () {
     Route::get('create', [CategoryController::Class,'create']);
     Route::get('update', [CategoryController::Class,'update']);
     Route::delete('delete', [CategoryController::Class,'delete']);
-    Route::post('show', [CategoryController::Class,'show']);
+    Route::get('show', [CategoryController::Class,'show']);
 
 
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Request;
 
 if (!function_exists('generateRandomString')) {
 
-    function generateRandomString($length = 10)
+    function generateRandomString($length = 10,$randomString)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -13,6 +13,36 @@ if (!function_exists('generateRandomString')) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+   }
+}
+if(!function_exists('insertStringID'))
+{
+    function insertStringID($string= '',$getIdByDesc,$length)
+    {
+        $number = '';
+        if(empty($getIdByDesc))
+        {
+            for ($i = 0; $i < $length; $i++) {
+                $number .= '0';
+            }
+            $string .= $number;
+            return $string;
+        }
+        //lấy giá trị từ bảng id
+        $number = $getIdByDesc['id'];
+        // tách chuỗi và lấy số
+        $split = preg_replace("/[^0-9]/","", $number);
+        // lấy giá trị cộng thêm 1
+        $sum =(int) $split + 1;
+        //lấy dộ dài
+        $len = strlen($sum) ;
+        //cắt chuỗi theo độ dài
+        $number = substr($split,0,-$len);
+        //cộng chuỗi
+        $number .= $sum;
+        $string .= $number;
+        return $string;
+
     }
 }
 if (!function_exists('createSlug')) {
