@@ -21,9 +21,12 @@ class Category extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $table = 'category';
-    protected $primaryKey = 'id';
+    protected $keyType = 'string';  //type key
+    public $incrementing = false; // incrementing not
     protected $fillable = [
+        'id',
         'name',
+        'status',
     ];
 
 }

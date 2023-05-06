@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 14, 2023 at 12:08 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 06, 2023 lúc 09:00 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,83 +18,83 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `qlnh`
+-- Cơ sở dữ liệu: `qlnh`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Cấu trúc bảng cho bảng `bill`
 --
 
 CREATE TABLE `bill` (
-  `id` int(11) NOT NULL,
+  `id` char(10) NOT NULL,
   `timein` datetime DEFAULT NULL,
   `timeout` datetime DEFAULT NULL,
   `discount` float DEFAULT NULL,
   `sum` double DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
-  `id_table` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `bill`
+-- Đang đổ dữ liệu cho bảng `bill`
 --
 
-INSERT INTO `bill` (`id`, `timein`, `timeout`, `discount`, `sum`, `status`, `id_table`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, '2023-04-11 18:20:51', '2023-04-11 18:20:51', 0, 200000, 'No', 1, 1, '2023-04-14 12:06:41', '2023-04-14 12:06:41');
+INSERT INTO `bill` (`id`, `timein`, `timeout`, `discount`, `sum`, `status`, `id_user`, `created_at`, `updated_at`) VALUES
+('HD000000', '2023-05-06 05:07:02', NULL, 0, 0, 'No', 1, '2023-05-06 05:07:02', '2023-05-06 05:07:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `billinfo`
+-- Cấu trúc bảng cho bảng `billinfo`
 --
 
 CREATE TABLE `billinfo` (
-  `id_food` int(11) NOT NULL,
-  `id_bill` int(11) NOT NULL,
+  `id` char(10) NOT NULL,
+  `id_bill` char(10) NOT NULL,
   `count` int(11) DEFAULT NULL,
   `sum` double DEFAULT NULL,
+  `note` varchar(50) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `billinfo`
+-- Đang đổ dữ liệu cho bảng `billinfo`
 --
 
-INSERT INTO `billinfo` (`id_food`, `id_bill`, `count`, `sum`, `created_at`, `updated_at`) VALUES
-(2, 1, 1, 200000, '2023-04-14 12:07:11', '2023-04-14 12:07:11'),
-(3, 1, 1, 200000, '2023-04-14 12:07:11', '2023-04-14 12:07:11');
+INSERT INTO `billinfo` (`id`, `id_bill`, `count`, `sum`, `note`, `created_at`, `updated_at`) VALUES
+('FD000000', 'HD000000', 1, 200000, NULL, '2023-05-06 05:07:02', '2023-05-06 05:07:02');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Cấu trúc bảng cho bảng `category`
 --
 
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
+  `id` char(10) NOT NULL,
   `name` varchar(30) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `category`
+-- Đang đổ dữ liệu cho bảng `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Món Ăn', NULL, NULL),
-(2, 'Nước', NULL, NULL);
+INSERT INTO `category` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+('CG000000', 'Món Ăn', NULL, '2023-05-06 03:41:55', '2023-05-06 03:41:55'),
+('CG000001', 'Nước uống', NULL, '2023-05-06 03:42:59', '2023-05-06 03:42:59');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Cấu trúc bảng cho bảng `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -110,36 +110,32 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `food`
+-- Cấu trúc bảng cho bảng `food`
 --
 
 CREATE TABLE `food` (
-  `id` int(11) NOT NULL,
+  `id` char(10) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `price` double DEFAULT NULL,
   `discount` float DEFAULT NULL,
   `count` int(11) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
-  `id_category` int(11) NOT NULL,
+  `id_category` char(10) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `food`
+-- Đang đổ dữ liệu cho bảng `food`
 --
 
 INSERT INTO `food` (`id`, `name`, `price`, `discount`, `count`, `image`, `id_category`, `created_at`, `updated_at`) VALUES
-(1, 'Mực Xào Cay', 200000, 0, 0, NULL, 1, NULL, NULL),
-(2, 'Gà Quay', 200000, 0, 0, NULL, 1, NULL, NULL),
-(3, 'Heo Rừng Hấp', 200000, 0, 0, NULL, 1, NULL, NULL),
-(4, 'Bia 333', 200000, 0, 0, NULL, 2, NULL, NULL),
-(5, 'Nước Suối', 200000, 0, 0, NULL, 2, NULL, NULL);
+('FD000000', 'Heo Quay', 200000, 0, 0, NULL, 'CG000000', '2023-05-06 03:45:15', '2023-05-06 03:45:15');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Cấu trúc bảng cho bảng `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -149,7 +145,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Đang đổ dữ liệu cho bảng `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -161,7 +157,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Cấu trúc bảng cho bảng `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -173,7 +169,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `personal_access_tokens`
+-- Cấu trúc bảng cho bảng `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -191,37 +187,51 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tables`
+-- Cấu trúc bảng cho bảng `tablefood`
 --
 
-CREATE TABLE `tables` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) DEFAULT NULL,
-  `status` varchar(20) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+CREATE TABLE `tablefood` (
+  `id` char(10) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `id_bill` char(10) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tables`
+-- Đang đổ dữ liệu cho bảng `tablefood`
 --
 
-INSERT INTO `tables` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'B1', 'No', NULL, NULL),
-(2, 'B2', 'No', NULL, NULL),
-(3, 'B3', 'No', NULL, NULL),
-(4, 'B4', 'No', NULL, NULL),
-(5, 'B5', 'No', NULL, NULL),
-(6, 'B6', 'No', NULL, NULL),
-(7, 'B7', 'No', NULL, NULL),
-(8, 'B8', 'No', NULL, NULL),
-(9, 'B9', 'No', NULL, NULL),
-(10, 'B10', 'No', NULL, NULL);
+INSERT INTO `tablefood` (`id`, `name`, `status`, `id_bill`, `created_at`, `updated_at`) VALUES
+('TB000000', 'B1', 'Đang Ăn', 'HD000000', '2023-05-04 15:12:39', '2023-05-06 05:07:02'),
+('TB000001', 'B2', 'Đang Ăn', NULL, '2023-05-04 15:12:50', '2023-05-04 15:12:50'),
+('TB000002', 'B3', 'No', NULL, '2023-05-05 00:07:15', '2023-05-05 00:07:15'),
+('TB000003', 'B4', 'No', NULL, '2023-05-05 00:07:29', '2023-05-05 00:07:29'),
+('TB000004', 'B5', 'No', NULL, '2023-05-05 00:07:42', '2023-05-05 00:07:42'),
+('TB000005', 'B6', 'Đang Ăn', NULL, '2023-05-05 00:08:01', '2023-05-05 00:08:01'),
+('TB000006', 'B8', 'No', NULL, '2023-05-05 00:08:32', '2023-05-05 00:08:32'),
+('TB000007', 'B7', 'No', NULL, '2023-05-05 00:10:57', '2023-05-05 00:10:57'),
+('TB000008', 'B20', 'No', NULL, '2023-05-06 05:09:57', '2023-05-06 05:09:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `timesheet`
+--
+
+CREATE TABLE `timesheet` (
+  `datein` datetime NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `status` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -230,75 +240,74 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL DEFAULT '1',
   `sex` varchar(255) NOT NULL,
-  `number` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
+  `number` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `sex`, `number`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nguyễn Quốc Việt', 'admin', '', NULL, 'admin', 'Nam', '', '', NULL, NULL, NULL);
+(1, 'Nguyễn Quốc Việt', 'admin', '', NULL, 'admin', 'Nam', '', '', NULL, NULL, NULL),
+(2, 'Nguyễn Quốc Việt', 'admin@gmail.com', 'lonconbaby2210@gmail.com', NULL, '1', 'Nam', NULL, NULL, NULL, '2023-04-21 06:52:50', '2023-04-21 06:52:50');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `bill`
+-- Chỉ mục cho bảng `bill`
 --
 ALTER TABLE `bill`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_table` (`id_table`),
-  ADD KEY `id_user` (`id_user`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `billinfo`
+-- Chỉ mục cho bảng `billinfo`
 --
 ALTER TABLE `billinfo`
-  ADD PRIMARY KEY (`id_food`),
-  ADD KEY `billinfo_ibfk_2` (`id_bill`);
+  ADD UNIQUE KEY `id_food` (`id`),
+  ADD KEY `id_bill` (`id_bill`);
 
 --
--- Indexes for table `category`
+-- Chỉ mục cho bảng `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Chỉ mục cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indexes for table `food`
+-- Chỉ mục cho bảng `food`
 --
 ALTER TABLE `food`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_category` (`id_category`);
 
 --
--- Indexes for table `migrations`
+-- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `personal_access_tokens`
+-- Chỉ mục cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -306,93 +315,81 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `tables`
+-- Chỉ mục cho bảng `tablefood`
 --
-ALTER TABLE `tables`
+ALTER TABLE `tablefood`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `timesheet`
+--
+ALTER TABLE `timesheet`
+  ADD PRIMARY KEY (`datein`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bill`
---
-ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `category`
---
-ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `food`
---
-ALTER TABLE `food`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `personal_access_tokens`
+-- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tables`
---
-ALTER TABLE `tables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `bill`
+-- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
-  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`id_table`) REFERENCES `tables` (`id`),
   ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `billinfo`
+-- Các ràng buộc cho bảng `billinfo`
 --
 ALTER TABLE `billinfo`
-  ADD CONSTRAINT `billinfo_ibfk_1` FOREIGN KEY (`id_food`) REFERENCES `food` (`id`),
-  ADD CONSTRAINT `billinfo_ibfk_2` FOREIGN KEY (`id_bill`) REFERENCES `bill` (`id`);
+  ADD CONSTRAINT `billinfo_ibfk_2` FOREIGN KEY (`id_bill`) REFERENCES `bill` (`id`),
+  ADD CONSTRAINT `billinfo_ibfk_3` FOREIGN KEY (`id`) REFERENCES `food` (`id`);
 
 --
--- Constraints for table `food`
+-- Các ràng buộc cho bảng `food`
 --
 ALTER TABLE `food`
   ADD CONSTRAINT `food_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `category` (`id`);
+
+--
+-- Các ràng buộc cho bảng `timesheet`
+--
+ALTER TABLE `timesheet`
+  ADD CONSTRAINT `timesheet_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -25,18 +25,19 @@ class BillInfoController extends BaseApiController
     public function create(Request $rq)
     {
         $Bill = $rq->all();
-        $Bill['idTable'] = 'Szx4cPTlr3';
-        $Bill['status'] = 'Ăn Tại Bàn';
-        $Bill['id_food'] = 1;
+        $Bill['idTable'] = 'TB000000';
+        $Bill['status'] = 'No';
+        $Bill['id_food'] = 'FD000000';
         $Bill['count'] = 1;
         $Bill['sum'] = 50000;
 
 
         $result = $this->_BillInfoService->create($Bill);
-        if ($result) {
-            return $this->successResponse($result, __('bill.add-success'));
-        }
-        return $this->successResponse($result, __('bill.add-fail'));
+        dd($result);
+        // if ($result) {
+        //     return $this->successResponse($result, __('bill.add-success'));
+        // }
+        // return $this->successResponse($result, __('bill.add-fail'));
 
     }
 

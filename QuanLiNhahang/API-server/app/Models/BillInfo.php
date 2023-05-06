@@ -21,9 +21,10 @@ class BillInfo extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $table = 'billinfo';
-    protected $primaryKey = 'id';
+    protected $keyType = 'string';  //type key
+    public $incrementing = false; // incrementing not
     protected $fillable = [
-        'id_food',
+        'id',
         'id_bill',
         'count',
         'sum',

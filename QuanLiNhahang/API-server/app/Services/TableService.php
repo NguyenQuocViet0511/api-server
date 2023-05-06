@@ -56,7 +56,7 @@ class TableService extends BaseService
         } catch (\Throwable$th) {
 
             $this->repo->rollbackTran();
-
+            
             throw $th;
         }
 

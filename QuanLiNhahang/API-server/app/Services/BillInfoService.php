@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Repositories\BillInfo\BillInfoRepositoryInterface;
-use App\Repositories\Bill\BillRepositoryInterface;
 use App\Repositories\Table\TableRepositoryInterface;
 use App\Repositories\Food\FoodRepositoryInterface;
+use App\Services\BillService;
 
 use App\Services\BaseService;
 
@@ -17,13 +17,13 @@ class BillInfoService extends BaseService
     private $_food;
     public function __Construct(
         BillInfoRepositoryInterface $BillInfoRepositoryInterface,
-        BillRepositoryInterface $BillRepositoryInterface,
+        BillService $BillService,
         TableRepositoryInterface $TableRepositoryInterface,
         FoodRepositoryInterface $foodRepositoryInterface,
 
     ) {
         $this->repo = $BillInfoRepositoryInterface;
-        $this->_bill = $BillRepositoryInterface;
+        $this->_bill = $BillService;
         $this->_table = $TableRepositoryInterface;
         $this -> _food = $foodRepositoryInterface;
     }
@@ -48,7 +48,7 @@ class BillInfoService extends BaseService
             $this->repo->beginTran();
             // create bill
             $bill = [
-                'id' => generateRandomString(),
+                'id' => insertStringID('HD',$this -> _bill -> GetId(),6),
                 'timein' => date_create(),
                 'discount' => 0,
                 'sum' => 0,
@@ -62,7 +62,7 @@ class BillInfoService extends BaseService
                 $price = $this -> _food -> find($data['id_food']);
                 $sum = $data['count'] *  $price['price'];
                 $billInfo = [
-                    'id_food' => $data['id_food'],
+                    'id' => $data['id_food'],
                     'id_bill' => $bill['id'],
                     'count' => $data['count'],
                     'sum' => $sum,

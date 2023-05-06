@@ -46,7 +46,6 @@ class BillController extends BaseApiController
     {
         $Bill = $rq->all();
         $result = $this->_BillService->delete($Bill['id']);
-        dd($result);
         if ($result) {
             return $this->successResponse("", __('bill.delete-success'));
         }
@@ -55,10 +54,12 @@ class BillController extends BaseApiController
 
     public function show(Request $rq)
     {
+        // $Bill = $rq->all();
+        // $result = $this->_BillService->ShowStatus($Bill['status']);
+        // return $this->successResponse($result, __('validation.list', ['attribute' => __('bill.name')]));
 
-        $Bill = $rq->all();
-        $result = $this->_BillService->ShowStatus($Bill['status']);
-        return $this->successResponse($result, __('validation.list', ['attribute' => __('bill.name')]));
+        $result = $this->_BillService-> GetBill();
+        return $this->successResponse($result, __('bill.delete-fail'));
 
     }
 

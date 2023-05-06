@@ -30,6 +30,8 @@ class FoodService extends BaseService
     {
         try {
             $this->repo->beginTran();
+            $getId = $this ->  repo -> getOderById('id','desc',1);
+            $data['id'] = insertStringID('FD',$getId,6);
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;

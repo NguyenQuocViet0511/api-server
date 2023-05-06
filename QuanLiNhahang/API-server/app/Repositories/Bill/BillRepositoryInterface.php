@@ -7,5 +7,6 @@ use App\Repositories\BaseRepositoryInterface;
 interface BillRepositoryInterface extends BaseRepositoryInterface
 {
 
+    public function GetBill();
 
 }

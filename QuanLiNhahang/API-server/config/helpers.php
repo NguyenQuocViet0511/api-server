@@ -15,6 +15,7 @@ if (!function_exists('generateRandomString')) {
         return $randomString;
    }
 }
+// insert 
 if(!function_exists('insertStringID'))
 {
     function insertStringID($string= '',$getIdByDesc,$length)

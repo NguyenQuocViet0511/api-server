@@ -30,8 +30,6 @@ class BillService extends BaseService
     {
         try {
             $this->repo->beginTran();
-            $getId = $this ->  repo -> getOderById('id','desc',1);
-            $data['id'] = insertStringID('HD',$getId,6);
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;
@@ -42,13 +40,17 @@ class BillService extends BaseService
         }
     }
 
+    public function GetId()
+    {
+        return  $this ->  repo -> getOderById('id','desc',1);
+
+    }
     public function delete($id)
     {
 
         try {
             $this->repo->beginTran();
             $this->repo->delete($id);
-
             $this->repo->commitTran();
             return true;
 
@@ -66,6 +68,9 @@ class BillService extends BaseService
         return true;
     }
 
-
+    public function GetBill()
+    {
+      return  $this -> repo -> GetBill();
+    }
 
 }

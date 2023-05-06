@@ -47,8 +47,8 @@ Route::prefix('food')->group(function () {
 
 Route::prefix('category')->group(function () {
     Route::get('list', [CategoryController::Class,'getAll']);
-    Route::get('create', [CategoryController::Class,'create']);
-    Route::get('update', [CategoryController::Class,'update']);
+    Route::post('create', [CategoryController::Class,'create']);
+    Route::post('update', [CategoryController::Class,'update']);
     Route::delete('delete', [CategoryController::Class,'delete']);
     Route::get('show', [CategoryController::Class,'show']);
 
@@ -59,7 +59,7 @@ Route::prefix('bill')->group(function () {
     Route::get('create', [BillController::Class,'create']);
     Route::get('update', [BillController::Class,'update']);
     Route::delete('delete', [BillController::Class,'delete']);
-    Route::post('show', [BillController::Class,'show']);
+    Route::get('show', [BillController::Class,'show']);
 
 
 });
