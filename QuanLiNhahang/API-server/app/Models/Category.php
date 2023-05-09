@@ -27,6 +27,7 @@ class Category extends Model
         'id',
         'name',
         'status',
+        'created_by'
     ];
 
 }

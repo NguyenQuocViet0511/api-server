@@ -18,7 +18,8 @@ class FoodRepository extends BaseRepository implements FoodRepositoryInterface
 
 
         $data = $this-> model -> join('category','category.id','=','food.id_category')
-        ->select('food.*','category.name as category_name')
+        ->join('users','users.id','=','food.created_by')
+        ->select('food.*','category.name as category','users.name as username')
         ->get();
         $total = count($data);
         return ['total' => $total, 'data' => $data];

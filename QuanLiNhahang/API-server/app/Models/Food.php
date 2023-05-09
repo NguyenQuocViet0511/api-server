@@ -30,7 +30,9 @@ class Food extends Model
         'price',
         'discount',
         'count',
-        'id_category'
+        'id_category',
+        'created_by'
+
 
     ];
 

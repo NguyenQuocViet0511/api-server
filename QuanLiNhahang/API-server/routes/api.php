@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\FoodController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\BillInfoController;
+use App\Http\Controllers\Api\UserController;
+
 
 
 /*
@@ -70,6 +72,15 @@ Route::prefix('BillInfo')->group(function () {
     Route::get('update', [BillInfoController::Class,'update']);
     Route::delete('delete', [BillInfoController::Class,'delete']);
     Route::post('show', [BillInfoController::Class,'show']);
+
+
+});
+Route::prefix('users')->group(function () {
+    Route::get('list', [UserController::Class,'getAll']);
+    Route::get('create', [UserController::Class,'create']);
+    Route::get('update', [UserController::Class,'update']);
+    Route::delete('delete', [UserController::Class,'delete']);
+    Route::post('show', [UserController::Class,'show']);
 
 
 });

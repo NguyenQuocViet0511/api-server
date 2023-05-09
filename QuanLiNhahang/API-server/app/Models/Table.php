@@ -28,8 +28,9 @@ class Table extends Model
         'name',
         'status',
         'id_bill',
-        'created_by',
-        'updated_by'
+        'created_by'
+
+
     ];
 
 }

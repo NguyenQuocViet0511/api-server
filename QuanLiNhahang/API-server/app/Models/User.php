@@ -17,6 +17,9 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+    protected $table = 'users'; //name table
     protected $fillable = [
         'name',
         'email',
@@ -25,6 +28,8 @@ class User extends Authenticatable
         'sex',
         'number',
         'address',
+        'id_role',
+        'status',
     ];
 
     /**
