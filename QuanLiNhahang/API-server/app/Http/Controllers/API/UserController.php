@@ -18,7 +18,7 @@ class UserController extends BaseApiController
     {
 
         $data = $this->_UserService->getAll();
-        return $this->successResponse($data, __('validation.list', ['attribute' => __('Table.name')]));
+        return $this->successResponse($data, __('validation.list', ['attribute' => __('user.name')]));
 
     }
 
@@ -27,9 +27,9 @@ class UserController extends BaseApiController
         $table = $rq->all();
         $result = $this->_UserService->create($table);
         if ($result) {
-            return $this->successResponse("", __('Table.add-success'));
+            return $this->successResponse(  $result, __('user.add-success'));
         }
-        return $this->successResponse("", __('Table.add-fail'));
+        return $this->successResponse(  $result, __('user.add-fail'));
 
     }
 
@@ -38,18 +38,18 @@ class UserController extends BaseApiController
         $table = $rq->all();
         $result = $this-> _UserService->update($table['id'],$table);
         if ($result) {
-            return $this->successResponse("", __('Table.edit-success'));
+            return $this->successResponse("", __('user.edit-success'));
         }
-        return $this->successResponse("", __('Table.edit-fail'));
+        return $this->successResponse("", __('user.edit-fail'));
     }
     public function delete(Request $rq)
     {
         $table = $rq->all();
         $result = $this->_UserService->delete($table['id']);
         if ($result) {
-            return $this->successResponse($result, __('Table.delete-success'));
+            return $this->successResponse($result, __('user.delete-success'));
         }
-        return $this->successResponse($result, __('Table.delete-fail'));
+        return $this->successResponse($result, __('user.delete-fail'));
     }
 
     public function show(Request $rq)
@@ -57,7 +57,7 @@ class UserController extends BaseApiController
 
         $table = $rq->all();
         $result = $this->_UserService->ShowStatus($table['status']);
-        return $this->successResponse($result, __('validation.list', ['attribute' => __('Table.name')]));
+        return $this->successResponse($result, __('validation.list', ['attribute' => __('user.name')]));
 
     }
 

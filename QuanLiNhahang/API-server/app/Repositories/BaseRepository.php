@@ -106,6 +106,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return true;
     }
 
+    public function GetByStatus()
+    {
+            $data = $this -> model -> where('status','Yes')->get();
+            $total = count($data);
+            return ['total' => $total, 'data' => $data];
+    }
+
     public function beginTran()
     {
         DB::beginTransaction();

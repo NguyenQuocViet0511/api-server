@@ -19,12 +19,16 @@ class User extends Authenticatable
      */
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+    protected $keyType = 'string'; //type key
+    public $incrementing = false; //
     protected $table = 'users'; //name table
     protected $fillable = [
+        'id',
         'name',
         'email',
         'username',
         'password',
+        'date',
         'sex',
         'number',
         'address',

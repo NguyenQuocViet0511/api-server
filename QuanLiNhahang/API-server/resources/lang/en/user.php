@@ -1,7 +1,8 @@
 <?php
 return [
     'id' => 'Mã',
-    'add-success' => 'Thêm bàn thành công',
+    'name' => 'người dùng',
+    'add-success' => 'Thêm thành công',
     'add-fail' => 'Thêm không thành công',
     'edit-success' => 'Cập nhật thành công',
     'edit-fail' => 'Cập nhật không thành công',

@@ -30,9 +30,13 @@ class UserService extends BaseService
     {
         try {
             $this->repo->beginTran();
+            $getId = $this ->  repo -> getOderById('id','desc',1);
+            $data['id'] = insertStringID('US',$getId,6);
+            $data['username'] =  $data['id'];
+            $data['password'] = $data['id'];
             $this->repo->create($data);
             $this->repo->commitTran();
-            return true;
+            return  true;
 
         } catch (\Throwable$th) {
             $this->repo->rollbackTran();
@@ -40,11 +44,7 @@ class UserService extends BaseService
         }
     }
 
-    public function GetId()
-    {
-        return  $this ->  repo -> getOderById('id','desc',1);
 
-    }
     public function delete($id)
     {
 

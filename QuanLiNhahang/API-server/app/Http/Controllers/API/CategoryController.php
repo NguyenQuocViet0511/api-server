@@ -21,6 +21,13 @@ class CategoryController extends BaseApiController
         return $this->successResponse($data, __('validation.list', ['attribute' => __('category.name')]));
 
     }
+    public function GetByStatus()
+    {
+
+        $data = $this->_CategoryService->GetByStatus();
+        return $this->successResponse($data, __('validation.list', ['attribute' => __('category.name')]));
+
+    }
 
     public function create(Request $rq)
     {
@@ -46,7 +53,6 @@ class CategoryController extends BaseApiController
     {
         $table = $rq->all();
         $result = $this->_CategoryService->delete($table['id']);
-        dd($result);
         if ($result) {
             return $this->successResponse($result, __('category.delete-success'));
         }
@@ -61,5 +67,6 @@ class CategoryController extends BaseApiController
         return $this->successResponse($result, __('validation.list', ['attribute' => __('Table.name')]));
 
     }
+
 
 }

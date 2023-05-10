@@ -14,7 +14,7 @@ class FoodService extends BaseService
 
     public function getAll()
     {
-        return $this->repo->getAll();
+        return $this-> repo->getAll();
     }
     public function get()
     {
@@ -32,6 +32,7 @@ class FoodService extends BaseService
             $this->repo->beginTran();
             $getId = $this ->  repo -> getOderById('id','desc',1);
             $data['id'] = insertStringID('FD',$getId,6);
+            $data['count'] = 0;
             $this->repo->create($data);
             $this->repo->commitTran();
             return true;
@@ -66,8 +67,8 @@ class FoodService extends BaseService
         return true;
     }
 
-    public function GetByIdCategory(){
-        return $this -> repo-> GetByIdCategory();
+    public function GetJoin(){
+        return $this -> repo-> GetJoin();
     }
 
 

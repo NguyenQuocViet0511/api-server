@@ -17,6 +17,8 @@ use  App\Repositories\BillInfo\BillInfoRepository;
 use  App\Repositories\BillInfo\BillInfoRepositoryInterface;
 use  App\Repositories\TimeSheet\TimeSheetRepository;
 use  App\Repositories\TimeSheet\TimeSheetRepositoryInterface;
+use  App\Repositories\Role\RoleRepository;
+use  App\Repositories\Role\RoleRepositoryInterface;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -33,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         UserRepositoryInterface::class => UserRepository::class,
         BillInfoRepositoryInterface::class => BillInfoRepository::class,
         TimeSheetRepositoryInterface::class => TimeSheetRepository::class,
+        RoleRepositoryInterface::class => RoleRepository::class,
+
 
     ];
 

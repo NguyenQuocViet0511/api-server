@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\BillInfoController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\RoleController;
+
 
 
 
@@ -51,8 +53,8 @@ Route::prefix('category')->group(function () {
     Route::get('list', [CategoryController::Class,'getAll']);
     Route::post('create', [CategoryController::Class,'create']);
     Route::post('update', [CategoryController::Class,'update']);
-    Route::delete('delete', [CategoryController::Class,'delete']);
-    Route::get('show', [CategoryController::Class,'show']);
+    Route::post('delete', [CategoryController::Class,'delete']);
+    Route::get('GetByStatus', [CategoryController::Class,'GetByStatus']);
 
 
 });
@@ -77,10 +79,14 @@ Route::prefix('BillInfo')->group(function () {
 });
 Route::prefix('users')->group(function () {
     Route::get('list', [UserController::Class,'getAll']);
-    Route::get('create', [UserController::Class,'create']);
-    Route::get('update', [UserController::Class,'update']);
-    Route::delete('delete', [UserController::Class,'delete']);
-    Route::post('show', [UserController::Class,'show']);
+    Route::post('create', [UserController::Class,'create']);
+    Route::post('update', [UserController::Class,'update']);
+    Route::post('delete', [UserController::Class,'delete']);
+    Route::get('show', [UserController::Class,'show']);
 
+
+});
+Route::prefix('role')->group(function () {
+    Route::get('list', [RoleController::Class,'getAll']);
 
 });

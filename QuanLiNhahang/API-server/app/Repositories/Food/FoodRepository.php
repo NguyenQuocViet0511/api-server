@@ -14,15 +14,23 @@ class FoodRepository extends BaseRepository implements FoodRepositoryInterface
         $this-> model = new Food();
     }
 
-    public function GetByIdCategory(){
+    public function GetJoin(){
 
 
         $data = $this-> model -> join('category','category.id','=','food.id_category')
         ->join('users','users.id','=','food.created_by')
-        ->select('food.*','category.name as category','users.name as username')
+        ->select('food.*','category.name as category','users.name as username','category.status as category_status' )
         ->get();
         $total = count($data);
         return ['total' => $total, 'data' => $data];
+
+    }
+
+    public function GetById($id){
+
+
+       return  $this-> model -> where('id_category',$id) -> get();
+
 
     }
 

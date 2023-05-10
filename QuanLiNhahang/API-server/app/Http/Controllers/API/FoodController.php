@@ -17,7 +17,7 @@ class FoodController extends BaseApiController
     public function getAll()
     {
 
-        $data = $this -> _foodService-> GetByIdCategory();
+        $data = $this -> _foodService-> GetJoin();
         return $this->successResponse($data, __('validation.list', ['attribute' => __('food.name')]));
 
     }

@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+
+class Role extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -16,19 +17,18 @@ class Category extends Model
      *
      * @var array<int, string>
      */
-
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-    protected $table = 'category';
+    protected $table = 'role'; //name table
     protected $keyType = 'string';  //type key
     public $incrementing = false; // incrementing not
     protected $fillable = [
         'id',
         'name',
-        'count',
         'status',
-        'created_by'
+
+
     ];
 
 }

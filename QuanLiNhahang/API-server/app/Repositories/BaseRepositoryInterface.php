@@ -57,6 +57,7 @@ interface BaseRepositoryInterface
      */
     public function createOrUpdate(int $id, $attributes = []);
 
+    public function GetByStatus();
     /**
      * Delete
      * @param $id
