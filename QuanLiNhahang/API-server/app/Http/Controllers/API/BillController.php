@@ -54,12 +54,13 @@ class BillController extends BaseApiController
 
     public function show(Request $rq)
     {
+        $Bill = $rq -> all();
         // $Bill = $rq->all();
         // $result = $this->_BillService->ShowStatus($Bill['status']);
         // return $this->successResponse($result, __('validation.list', ['attribute' => __('bill.name')]));
 
-        $result = $this->_BillService-> GetBill();
-        return $this->successResponse($result, __('bill.delete-fail'));
+        $result = $this->_BillService-> GetBill($Bill['id']);
+        return $this->successResponse($result, __('bill.name'));
 
     }
 

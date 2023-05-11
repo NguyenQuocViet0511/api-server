@@ -14,17 +14,7 @@ class TableRepository extends BaseRepository implements TableRepositoryInterface
         $this-> model = new Table();
     }
 
-    public function getByStatus($status){
-        $result = $this -> model -> where('status', $status) -> get();
-        if($result){
-            return $result;
 
-        }
-        return false;
-
-
-
-    }
 
 
 

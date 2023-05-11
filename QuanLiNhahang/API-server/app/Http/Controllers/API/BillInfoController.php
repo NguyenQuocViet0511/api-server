@@ -67,9 +67,17 @@ class BillInfoController extends BaseApiController
     {
 
         $Bill = $rq->all();
-        $result = $this->_BillInfoService->ShowStatus($Bill['status']);
-        return $this->successResponse($result, __('validation.list', ['attribute' => __('bill.name')]));
+        $result = $this->_BillInfoService->GetBillInfo( $Bill['id']);
+        return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.name')]));
 
     }
 
+    public function CreateOrUpdate(Request $rq)
+    {
+        $data = $rq -> all();
+
+        $result = $this -> _BillInfoService -> CreateOrUpdate($data);
+        return $this->successResponse($data, __('validation.list', ['attribute' => __('billinfo.add-success')]));
+
+    }
 }

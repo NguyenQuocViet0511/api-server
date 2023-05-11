@@ -28,6 +28,8 @@ class BillInfo extends Model
         'id_bill',
         'count',
         'sum',
+        'status',
+        'note',
     ];
 
 }

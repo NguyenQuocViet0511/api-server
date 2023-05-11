@@ -7,6 +7,8 @@ use App\Repositories\BaseRepositoryInterface;
 interface BillRepositoryInterface extends BaseRepositoryInterface
 {
 
-    public function GetBill();
+    public function GetBill($id);
+
+    public function checkExist($id);
 
 }

@@ -68,9 +68,12 @@ class BillService extends BaseService
         return true;
     }
 
-    public function GetBill()
+    public function GetBill($id)
     {
-      return  $this -> repo -> GetBill();
+      return  $this -> repo -> GetBill($id);
     }
-
+    public function checkExist($data)
+    {
+        return $this -> repo -> checkExist($data);
+    }
 }

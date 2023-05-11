@@ -70,11 +70,11 @@ Route::prefix('bill')->group(function () {
 
 Route::prefix('BillInfo')->group(function () {
     Route::get('list', [BillInfoController::Class,'getAll']);
-    Route::get('create', [BillInfoController::Class,'create']);
-    Route::get('update', [BillInfoController::Class,'update']);
-    Route::delete('delete', [BillInfoController::Class,'delete']);
+    Route::post('create', [BillInfoController::Class,'create']);
+    Route::post('update', [BillInfoController::Class,'update']);
+    Route::post('delete', [BillInfoController::Class,'delete']);
     Route::post('show', [BillInfoController::Class,'show']);
-
+    Route::post('CreateOrUpdate', [BillInfoController::Class,'CreateOrUpdate']);
 
 });
 Route::prefix('users')->group(function () {

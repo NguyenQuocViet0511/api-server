@@ -6,7 +6,6 @@ use App\Repositories\BaseRepositoryInterface;
 
 interface TableRepositoryInterface extends BaseRepositoryInterface
 {
-    public function getByStatus($status);
 
 
 }
