@@ -16,8 +16,8 @@ class BillRepository extends BaseRepository implements BillRepositoryInterface
 
     public function GetBill($id){
 
-        $data = $this-> model -> join('tablefood','tablefood.id_bill','=','bill.id')->where('tablefood.status','=','Yes')
-        ->join('billinfo', 'billinfo.id_bill', '=', 'bill.id')->where('bill.status','=','No')->where('tablefood.id',"=",$id)
+        $data = $this-> model -> join('tablefood','tablefood.id_bill','=','bill.id')
+        ->join('billinfo', 'billinfo.id_bill', '=', 'bill.id')->where('tablefood.id',"=",$id)
         ->select('bill.*','bill.status as billstatus')
         ->get();
         $total = count($data);

@@ -16,6 +16,12 @@ class TableRepository extends BaseRepository implements TableRepositoryInterface
 
 
 
+    public function GetStatus(){
 
+        $data = $this-> model-> where('status','=','No')
+        ->get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
+    }
 
 }

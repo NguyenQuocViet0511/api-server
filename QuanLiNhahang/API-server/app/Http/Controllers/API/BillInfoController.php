@@ -44,19 +44,16 @@ class BillInfoController extends BaseApiController
     public function update(Request $rq)
     {
         $BillInfo = $rq->all();
-        $BillInfo['id_food'] = 1;
         $result = $this-> _BillInfoService->update($BillInfo);
-        dd($result);
-        // if ($result) {
-        //     return $this->successResponse("", __('bill.edit-success'));
-        // }
-        // return $this->successResponse("", __('bill.edit-fail'));
+        if ($result) {
+            return $this->successResponse( $result, __('billinfo.send-Cook-success'));
+        }
+        return $this->successResponse( $result, __('billinfo.send-Cook-fail'));
     }
     public function delete(Request $rq)
     {
         $Bill = $rq->all();
-        $result = $this->_BillInfoService->delete($Bill['id']);
-        dd($result);
+        $result = $this->_BillInfoService->delete($Bill);
         if ($result) {
             return $this->successResponse("", __('bill.delete-success'));
         }
@@ -66,8 +63,8 @@ class BillInfoController extends BaseApiController
     public function show(Request $rq)
     {
 
-        $Bill = $rq->all();
-        $result = $this->_BillInfoService->GetBillInfo( $Bill['id']);
+        $data = $rq->all();
+        $result = $this->_BillInfoService->GetBillInfo($data);
         return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.name')]));
 
     }
@@ -75,9 +72,8 @@ class BillInfoController extends BaseApiController
     public function CreateOrUpdate(Request $rq)
     {
         $data = $rq -> all();
-
         $result = $this -> _BillInfoService -> CreateOrUpdate($data);
-        return $this->successResponse($data, __('validation.list', ['attribute' => __('billinfo.add-success')]));
+        return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.add-success')]));
 
     }
 }

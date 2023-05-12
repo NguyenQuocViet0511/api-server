@@ -41,57 +41,18 @@ class BillInfoService extends BaseService
         return $this->repo->find($id);
     }
 
-    // public function create($data = [])
-    // {
-    //     try {
-    //         $this->repo->beginTran();
-    //         // create bill
-    //         $bill = [
-    //             'id' => insertStringID('HD',$this -> _bill -> GetId(),6),
-    //             'timein' => date_create(),
-    //             'discount' => 0,
-    //             'sum' => 0,
-    //             'status' => $data['status'],
-    //             'id_user' => 1,
-
-    //         ];
-    //         // if create success to insert billinfo
-    //         $result = $this->_bill->create($bill);
-    //         if ($result) {
-    //             $price = $this -> _food -> find($data['id_food']);
-    //             $sum = $data['count'] *  $price['price'];
-    //             $billInfo = [
-    //                 'id' => $data['id_food'],
-    //                 'id_bill' => $bill['id'],
-    //                 'count' => $data['count'],
-    //                 'sum' => $sum,
-    //             ];
-    //             $this->repo->create($billInfo);
-    //         }
-    //         // update status table
-    //         $table = [
-    //             'id' => $data['idTable'],
-    //             'status' => 'Đang Ăn',
-    //             'id_bill' =>  $bill['id']
-    //         ];
-    //         $this -> _table -> update($table['id'], $table);
-
-    //         $this->repo->commitTran();
-    //         return true;
-
-    //     } catch (\Throwable$th) {
-    //         $this->repo->rollbackTran();
-    //         throw $th;
-    //     }
-    // }
-
-    public function delete($id)
+    public function delete($data)
     {
 
         try {
             $this->repo->beginTran();
-            $this->repo->delete($id);
-
+            $result = $this->repo->checkExist($data['id'], $data['id_bill']);
+            if(empty($result))
+            {
+                return false;
+                $this->repo->commitTran();
+            }
+            $result -> where('id',$data['id'])->where('id_bill',$data['id_bill'])->where('status','No') -> delete();
             $this->repo->commitTran();
             return true;
 
@@ -106,19 +67,19 @@ class BillInfoService extends BaseService
     public function update($data = [])
     {
         try {
-
-            $this->repo->update($condition, $data);
+            $this->repo->beginTran();
+            $result = $this->repo->checkExist($data['id'], $data['id_bill']);
+            $result ->where('id_bill',$data['id_bill'])->where('status','No') -> update(array('status' => 'Yes'));
+            $this->repo->commitTran();
             return true;
+
 
             // $this->repo->update($condition, $data);
         } catch (\Throwable $th) {
             throw $th;
         }
     }
-    public function GetBillInfo($id)
-    {
-        return $this->repo->GetBillInfo($id);
-    }
+
     public function CreateOrUpdate($data = [])
     {
 
@@ -175,6 +136,8 @@ class BillInfoService extends BaseService
                     'id' => $data['id'],
                     'id_bill' => $bill['id'],
                     'count' => $SumCount,
+                    'status' => 'No',
+                    'note' => $data['note'],
                     'sum' => $sum,
                 ];
                 $this->repo->create($billInfo);
@@ -197,5 +160,10 @@ class BillInfoService extends BaseService
             throw $th;
         }
 
+    }
+
+    public function GetBillInfo($id)
+    {
+        return $this->repo->GetBillInfo($id);
     }
 }

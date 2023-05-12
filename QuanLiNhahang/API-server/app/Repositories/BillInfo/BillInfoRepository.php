@@ -15,11 +15,12 @@ class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInt
     }
 
 
-    public function GetBillInfo($id){
+    public function GetBillInfo($data){
 
-        $data = $this-> model -> join('food','food.id','=','billinfo.id')
-        ->join('bill', 'bill.id', '=', 'billinfo.id_bill')->where('bill.status','=','No')->where('bill.id',"=",$id)
-        ->select('billinfo.*','bill.status as billstatus','food.name as foodname','food.price as foodprice')
+        $data = $this-> model -> join('bill','bill.id','=','billinfo.id_bill')
+        ->join('tablefood','tablefood.id_bill','=','bill.id')
+        ->join('food','food.id','=','billinfo.id')->where('tablefood.id','=',$data['id_table'])->where('tablefood.status','=','Yes')
+        ->select('billinfo.*','bill.status as billstatus','food.name as foodname','food.price as foodprice','tablefood.id as Tableid')
         ->get();
         $total = count($data);
         return ['total' => $total, 'data' => $data];
@@ -27,7 +28,6 @@ class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInt
 
     public function checkExist($id,$id_bill){
         $data = $this-> model -> where('id','=',$id)->where('id_bill','=',$id_bill)-> where('status','No') -> first();
-
         return $data;
     }
 

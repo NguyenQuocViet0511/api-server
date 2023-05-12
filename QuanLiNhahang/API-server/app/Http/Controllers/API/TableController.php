@@ -36,7 +36,7 @@ class TableController extends BaseApiController
     public function update(Request $rq)
     {
         $table = $rq->all();
-        $result = $this-> _tableService->update($table['id'],$table);
+        $result = $this-> _tableService->update($table);
         if ($result) {
             return $this->successResponse("", __('Table.edit-success'));
         }
@@ -55,8 +55,7 @@ class TableController extends BaseApiController
     public function show(Request $rq)
     {
 
-        $table = $rq->all();
-        $result = $this->_tableService->ShowStatus($table['status']);
+        $result = $this->_tableService->GetStatus();
         return $this->successResponse($result, __('validation.list', ['attribute' => __('Table.name')]));
 
     }

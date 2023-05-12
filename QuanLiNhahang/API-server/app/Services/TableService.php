@@ -56,20 +56,35 @@ class TableService extends BaseService
         } catch (\Throwable$th) {
 
             $this->repo->rollbackTran();
-            
+
             throw $th;
         }
 
     }
-    public function update($condition = [], $data = [])
+    public function update($data = [])
     {
-        $this->repo->update($condition, $data);
-        return true;
+        try {
+            $this->repo->beginTran();
+            $find = $this->repo->find($data['id_tablePresent']);
+            $find -> update(array('status'=> 'No','id_bill' => NULL));
+            $find = $this->repo->find($data['id_tableUpdate']);
+            $find -> update(array('status'=> 'Yes','id_bill' => $data['id_bill']));
+
+            $this->repo->commitTran();
+            return true;
+
+        } catch (\Throwable$th) {
+
+            $this->repo->rollbackTran();
+
+            throw $th;
+        }
+
     }
 
-    public function ShowStatus($status)
-    {
-        return $this->repo->getByStatus($status);
-    }
 
+    public function GetStatus()
+    {
+        return $this->repo->GetStatus();
+    }
 }
