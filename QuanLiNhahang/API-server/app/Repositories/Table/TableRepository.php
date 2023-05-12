@@ -23,5 +23,11 @@ class TableRepository extends BaseRepository implements TableRepositoryInterface
         $total = count($data);
         return ['total' => $total, 'data' => $data];
     }
+    public function updatePay($data)
+    {
+           $data = $this -> model -> find($data['id_Table']);
+           $data -> update();
+    }
+
 
 }

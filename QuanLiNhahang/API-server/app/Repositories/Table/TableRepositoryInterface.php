@@ -8,4 +8,5 @@ interface TableRepositoryInterface extends BaseRepositoryInterface
 {
 
     public function GetStatus();
+    public function updatePay($data);
 }

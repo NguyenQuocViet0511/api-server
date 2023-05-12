@@ -61,7 +61,7 @@ Route::prefix('category')->group(function () {
 Route::prefix('bill')->group(function () {
     Route::get('list', [BillController::Class,'getAll']);
     Route::get('create', [BillController::Class,'create']);
-    Route::get('update', [BillController::Class,'update']);
+    Route::post('update', [BillController::Class,'update']);
     Route::delete('delete', [BillController::Class,'delete']);
     Route::get('show', [BillController::Class,'show']);
 

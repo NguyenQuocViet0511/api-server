@@ -4,12 +4,19 @@ namespace App\Services;
 
 use App\Repositories\Bill\BillRepositoryInterface;
 use App\Services\BaseService;
+use App\Repositories\Table\TableRepositoryInterface;
+
 
 class BillService extends BaseService
 {
-    public function __Construct(BillRepositoryInterface $BillRepositoryInterface)
+    private $_table;
+
+    public function __Construct(
+        BillRepositoryInterface $BillRepositoryInterface,
+        TableRepositoryInterface $TableRepositoryInterface)
     {
-        $this->repo = $BillRepositoryInterface;
+        $this-> repo = $BillRepositoryInterface;
+        $this-> _table = $TableRepositoryInterface;
     }
 
     public function getAll()
@@ -62,10 +69,29 @@ class BillService extends BaseService
         }
 
     }
-    public function update($condition = [], $data = [])
+    public function update($data = [])
     {
-        $this->repo->update($condition, $data);
+
+        try {
+        $this->repo->beginTran();
+        $bill = $this->repo->find($data['id_bill']);
+        if(empty($bill))
+        {
+            return false;
+
+        }
+        $bill -> update(array('status' => 'Yes','sum' => $data['sum'],'timeout' => date_create()));
+        $table = $this -> _table -> find($data['id_table']);
+        $table -> update(array('status'=> 'No','id_bill' => NULL));
+        $this->repo->commitTran();
         return true;
+        }
+        catch (\Throwable$th) {
+
+            $this->repo->rollbackTran();
+
+            throw $th;
+        }
     }
 
     public function GetBill($id)

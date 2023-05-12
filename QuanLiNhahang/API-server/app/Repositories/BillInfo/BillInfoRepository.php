@@ -20,7 +20,7 @@ class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInt
         $data = $this-> model -> join('bill','bill.id','=','billinfo.id_bill')
         ->join('tablefood','tablefood.id_bill','=','bill.id')
         ->join('food','food.id','=','billinfo.id')->where('tablefood.id','=',$data['id_table'])->where('tablefood.status','=','Yes')
-        ->select('billinfo.*','bill.status as billstatus','food.name as foodname','food.price as foodprice','tablefood.id as Tableid')
+        ->select('billinfo.*','bill.status as billstatus','food.name as foodname','food.price as foodprice','tablefood.id as Tableid','bill.timein')
         ->get();
         $total = count($data);
         return ['total' => $total, 'data' => $data];

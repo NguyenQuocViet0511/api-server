@@ -36,7 +36,7 @@ class BillController extends BaseApiController
     public function update(Request $rq)
     {
         $Bill = $rq->all();
-        $result = $this-> _BillService->update($Bill['id'],$Bill);
+        $result = $this-> _BillService->update($Bill);
         if ($result) {
             return $this->successResponse("", __('bill.edit-success'));
         }
