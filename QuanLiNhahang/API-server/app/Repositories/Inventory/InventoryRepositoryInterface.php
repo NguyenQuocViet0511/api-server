@@ -8,8 +8,7 @@ interface InventoryRepositoryInterface extends BaseRepositoryInterface
 {
 
 
-    public function GetJoin();
-    public function GetById($id);
+
 
 
 }

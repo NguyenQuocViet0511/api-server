@@ -164,6 +164,6 @@ class BillInfoService extends BaseService
 
     public function GetBillInfo($id)
     {
-        return $this->repo->GetBillInfo($id);
+        return $this->repo->GetJoin($id);
     }
 }

@@ -9,7 +9,11 @@ use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\BillInfoController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\MaterialController;
+use App\Http\Controllers\Api\MaterialBillController;
+use App\Http\Controllers\Api\MaterialBillInfoController;
 
+use App\Http\Controllers\Api\InventoryController;
 
 
 
@@ -31,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('tables')->group(function () {
     Route::get('list', [TableController::Class,'getAll']);
     Route::post('create', [TableController::Class,'create']);
+    Route::post('updateMoveTable', [TableController::Class,'updateMoveTable']);
     Route::post('update', [TableController::Class,'update']);
     Route::post('delete', [TableController::Class,'delete']);
     Route::get('show', [TableController::Class,'show']);
@@ -88,5 +93,41 @@ Route::prefix('users')->group(function () {
 });
 Route::prefix('role')->group(function () {
     Route::get('list', [RoleController::Class,'getAll']);
+
+});
+Route::prefix('material')->group(function () {
+    Route::get('list', [MaterialController::Class,'getAll']);
+    Route::post('create', [MaterialController::Class,'create']);
+    Route::post('update', [MaterialController::Class,'update']);
+    Route::post('delete', [MaterialController::Class,'delete']);
+
+});
+Route::prefix('materialbill')->group(function () {
+    Route::get('list', [MaterialBillController::Class,'getAll']);
+    Route::post('create', [MaterialBillController::Class,'create']);
+    Route::post('update', [MaterialBillController::Class,'update']);
+    Route::post('delete', [MaterialBillController::Class,'delete']);
+    Route::get('show', [MaterialBillController::Class,'show']);
+
+
+});
+Route::prefix('materialbillinfo')->group(function () {
+    Route::get('list', [MaterialBillInfoController::Class,'getAll']);
+    Route::post('create', [MaterialBillInfoController::Class,'create']);
+    Route::post('update', [MaterialBillInfoController::Class,'update']);
+    Route::post('delete', [MaterialBillInfoController::Class,'delete']);
+    Route::post('CreateOrUpdate', [MaterialBillInfoController::Class,'CreateOrUpdate']);
+    Route::post('show', [MaterialBillInfoController::Class,'show']);
+
+
+});
+Route::prefix('inventory')->group(function () {
+    Route::get('list', [InventoryController::Class,'getAll']);
+    Route::get('create', [InventoryController::Class,'create']);
+    Route::post('update', [InventoryController::Class,'update']);
+    Route::post('delete', [InventoryController::Class,'delete']);
+    Route::get('CreateOrUpdate', [InventoryController::Class,'CreateOrUpdate']);
+    Route::post('show', [InventoryController::Class,'show']);
+
 
 });

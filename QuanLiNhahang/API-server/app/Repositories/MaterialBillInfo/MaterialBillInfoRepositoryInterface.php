@@ -8,8 +8,9 @@ interface MaterialBillInfoRepositoryInterface extends BaseRepositoryInterface
 {
 
 
-    public function GetJoin();
-    public function GetById($id);
+    public function GetJoin($id);
+    public function GetAllID($data);
 
+    public function checkExist($id,$id_bill);
 
 }

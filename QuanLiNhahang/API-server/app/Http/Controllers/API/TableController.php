@@ -32,11 +32,22 @@ class TableController extends BaseApiController
         return $this->successResponse("", __('Table.add-fail'));
 
     }
-
     public function update(Request $rq)
     {
         $table = $rq->all();
-        $result = $this-> _tableService->update($table);
+        $result = $this->_tableService->update($table);
+        if ($result) {
+            return $this->successResponse("", __('Table.edit-success'));
+        }
+        return $this->successResponse("", __('Table.edit-fail'));
+
+    }
+
+
+    public function updateMoveTable(Request $rq)
+    {
+        $table = $rq->all();
+        $result = $this-> _tableService->updateMoveTable($table);
         if ($result) {
             return $this->successResponse("", __('Table.edit-success'));
         }

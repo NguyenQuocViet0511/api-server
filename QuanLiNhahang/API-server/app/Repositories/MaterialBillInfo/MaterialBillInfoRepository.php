@@ -3,7 +3,7 @@
 namespace App\Repositories\MaterialBillInfo;
 
 use App\Models\MaterialBillInfo;
-use App\Repositories\Material\MaterialRepositoryInterface;
+use App\Repositories\MaterialBillInfo\MaterialBillInfoRepositoryInterface;
 use App\Repositories\BaseRepository;
 
 class MaterialBillInfoRepository extends BaseRepository implements MaterialBillInfoRepositoryInterface
@@ -14,27 +14,31 @@ class MaterialBillInfoRepository extends BaseRepository implements MaterialBillI
         $this-> model = new MaterialBillInfo();
     }
 
-    public function GetJoin(){
+
+        public function GetJoin($id){
+
+            $data = $this-> model -> join('materialbill','materialbill.id','=','materialbillinfo.id_materialbill')
+            ->join('material','material.id','=','materialbillinfo.id')->where('materialbill.id','=',$id)
+            ->select('materialbillinfo.*' ,'material.name as name','material.price as price','materialbill.status as status')
+            ->get();
+            $total = count($data);
+            return ['total' => $total, 'data' => $data];
+
+        }
 
 
-        $data = $this-> model -> join('category','category.id','=','food.id_category')
-        ->join('users','users.id','=','food.created_by')
-        ->select('food.*','category.name as category','users.name as username','category.status as category_status' )
-        ->get();
-        $total = count($data);
-        return ['total' => $total, 'data' => $data];
+    public function GetAllID($data){
+
+
+       return  $this-> model -> where('id_materialbill','=',$data)-> get();
+
 
     }
 
-    public function GetById($id){
-
-
-       return  $this-> model -> where('id_category',$id) -> get();
-
-
+    public function checkExist($id,$id_bill){
+        $data = $this-> model -> where('id','=',$id)->where('id_materialbill','=',$id_bill)-> first();
+        return $data;
     }
-
-
 
 
 }

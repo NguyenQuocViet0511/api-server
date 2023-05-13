@@ -27,7 +27,6 @@ class MaterialBill extends Model
     protected $fillable = [
         'id',
         'timein',
-        'timeout',
         'sum',
         'status',
         'created_by'

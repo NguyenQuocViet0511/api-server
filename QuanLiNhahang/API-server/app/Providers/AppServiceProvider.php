@@ -19,6 +19,18 @@ use  App\Repositories\TimeSheet\TimeSheetRepository;
 use  App\Repositories\TimeSheet\TimeSheetRepositoryInterface;
 use  App\Repositories\Role\RoleRepository;
 use  App\Repositories\Role\RoleRepositoryInterface;
+use  App\Repositories\Material\MaterialRepository;
+use  App\Repositories\Material\MaterialRepositoryInterface;
+
+use  App\Repositories\MaterialBillInfo\MaterialBillInfoRepository;
+use  App\Repositories\MaterialBillInfo\MaterialBillInfoRepositoryInterface;
+
+use  App\Repositories\MaterialBill\MaterialBillRepository;
+use  App\Repositories\MaterialBill\MaterialBillRepositoryInterface;
+
+
+use  App\Repositories\Inventory\InventoryRepository;
+use  App\Repositories\Inventory\InventoryRepositoryInterface;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -36,6 +48,11 @@ class AppServiceProvider extends ServiceProvider
         BillInfoRepositoryInterface::class => BillInfoRepository::class,
         TimeSheetRepositoryInterface::class => TimeSheetRepository::class,
         RoleRepositoryInterface::class => RoleRepository::class,
+        MaterialRepositoryInterface::class => MaterialRepository::class,
+        MaterialBillRepositoryInterface::class => MaterialBillRepository::class,
+        MaterialBillInfoRepositoryInterface::class => MaterialBillInfoRepository::class,
+        InventoryRepositoryInterface::class => InventoryRepository::class,
+
 
 
     ];

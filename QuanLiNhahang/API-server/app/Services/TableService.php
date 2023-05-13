@@ -61,7 +61,7 @@ class TableService extends BaseService
         }
 
     }
-    public function update($data = [])
+    public function updateMoveTable($data = [])
     {
         try {
             $this->repo->beginTran();
@@ -81,7 +81,15 @@ class TableService extends BaseService
         }
 
     }
+    public function update($data = [])
+    {
 
+            $this->repo->update($data['id'],$data);
+            return true;
+
+
+
+    }
 
     public function GetStatus()
     {

@@ -3,36 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseApiController;
-use App\Services\BillInfoService;
+use App\Services\MaterialBillService;
 use Illuminate\Http\Request;
 
-class BillInfoController extends BaseApiController
+class MaterialBillController extends BaseApiController
 {
-    protected $_BillInfoService;
+    protected $_MaterialBillService;
 
-    public function __Construct(BillInfoService $BillInfoService)
+    public function __Construct(MaterialBillService $MaterialBillService)
     {
-        $this->_BillInfoService = $BillInfoService;
+        $this->_MaterialBillService = $MaterialBillService;
     }
     public function getAll()
     {
 
-        $data = $this->_BillInfoService->getAll();
+        $data = $this->_MaterialBillService->getAll();
         return $this->successResponse($data, __('validation.list', ['attribute' => __('bill.name')]));
 
     }
 
     public function create(Request $rq)
     {
-        $Bill = $rq->all();
-        // $Bill['idTable'] = 'TB000000';
-        // $Bill['status'] = 'No';
-        // $Bill['id_food'] = 'FD000000';
-        // $Bill['count'] = 1;
-        // $Bill['sum'] = 50000;
-
-
-        $result = $this->_BillInfoService->create($Bill);
+        $data = $rq->all();
+        $result = $this->_MaterialBillService->create($data);
         if ($result) {
             return $this->successResponse($result, __('bill.add-success'));
         }
@@ -43,7 +36,7 @@ class BillInfoController extends BaseApiController
     public function update(Request $rq)
     {
         $BillInfo = $rq->all();
-        $result = $this-> _BillInfoService->update($BillInfo);
+        $result = $this-> _MaterialBillService->update($BillInfo);
         if ($result) {
             return $this->successResponse( $result, __('billinfo.send-Cook-success'));
         }
@@ -52,7 +45,7 @@ class BillInfoController extends BaseApiController
     public function delete(Request $rq)
     {
         $Bill = $rq->all();
-        $result = $this->_BillInfoService->delete($Bill);
+        $result = $this->_MaterialBillService->delete($Bill);
         if ($result) {
             return $this->successResponse("", __('bill.delete-success'));
         }
@@ -63,7 +56,7 @@ class BillInfoController extends BaseApiController
     {
 
         $data = $rq->all();
-        $result = $this->_BillInfoService->GetBillInfo($data);
+        $result = $this->_MaterialBillService->GetBill($data['id_bill']);
         return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.name')]));
 
     }

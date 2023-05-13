@@ -15,7 +15,7 @@ class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInt
     }
 
 
-    public function GetBillInfo($data){
+    public function GetJoin($data){
 
         $data = $this-> model -> join('bill','bill.id','=','billinfo.id_bill')
         ->join('tablefood','tablefood.id_bill','=','bill.id')

@@ -8,7 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Food extends Model
+class Inventory extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -25,15 +25,8 @@ class Food extends Model
     protected $keyType = 'string';  //type key
     public $incrementing = false; // incrementing not
     protected $fillable = [
-        'datein',
-        'id_material',
-        'quantityfirst',
-        'quantityin',
-        'quantityout',
-        'quantityend',
-
-
-
+        'id',
+        'quantity',
     ];
 
 }
