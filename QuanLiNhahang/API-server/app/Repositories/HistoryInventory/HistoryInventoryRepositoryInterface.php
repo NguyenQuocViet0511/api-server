@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\Inventory;
+namespace App\Repositories\HistoryInventory;
 
 use App\Repositories\BaseRepositoryInterface;
 
-interface InventoryRepositoryInterface extends BaseRepositoryInterface
+interface HistoryInventoryRepositoryInterface extends BaseRepositoryInterface
 {
 
     public function checkExist($id);

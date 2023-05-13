@@ -7,6 +7,7 @@ use App\Repositories\Material\MaterialRepositoryInterface;
 use App\Services\BaseService;
 use App\Services\MaterialBillService;
 use App\Services\InventoryService;
+use App\Services\HistoryInventoryService;
 
 
 class MaterialBillInfoService extends BaseService
@@ -15,17 +16,20 @@ class MaterialBillInfoService extends BaseService
     private $_bill;
     private $_material;
     private $_inventory;
+    private $_HistoryInventoryService;
     public function __Construct(
         MaterialBillInfoRepositoryInterface $MaterialBillInfoRepositoryInterface,
         MaterialBillService $MaterialBillService,
         MaterialRepositoryInterface $MaterialRepositoryInterface,
-        InventoryService $InventoryBillService
+        InventoryService $InventoryService,
+        HistoryInventoryService $HistoryInventoryService
 
     ) {
         $this->repo = $MaterialBillInfoRepositoryInterface;
         $this->_bill = $MaterialBillService;
         $this->_material = $MaterialRepositoryInterface;
-        $this -> _inventory = $InventoryBillService;
+        $this -> _inventory = $InventoryService;
+        $this -> _HistoryInventoryService = $HistoryInventoryService;
 
     }
 
@@ -66,6 +70,7 @@ class MaterialBillInfoService extends BaseService
 
             $updatebill ->  update(array('sum' => $sumall));
 
+            $this -> _inventory  ->  update($data, $result['count']);
             $this->repo->commitTran();
             return true;
 
@@ -116,6 +121,7 @@ class MaterialBillInfoService extends BaseService
 
                 //inventory
                 $this -> _inventory  ->  CreateOrUpdate($data);
+                $this -> _HistoryInventoryService ->create($data);
                 $this->repo->commitTran();
                 return true;
             }
@@ -140,6 +146,7 @@ class MaterialBillInfoService extends BaseService
             }
 
             $this -> _inventory  ->  CreateOrUpdate($data);
+            $this -> _HistoryInventoryService ->create($data);
             $this->repo->commitTran();
             return true;
 

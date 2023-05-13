@@ -14,8 +14,20 @@ class InventoryRepository extends BaseRepository implements InventoryRepositoryI
         $this-> model = new Inventory();
     }
 
+    public function checkExist($id){
+        $data = $this-> model -> where('id','=',$id) -> first();
+        return $data;
+    }
+
+    public function GetJoin(){
 
 
+        $data = $this-> model -> join('material','material.id','=','inventory.id')
+        ->select('inventory.*','material.name as name', )
+        ->get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
 
+    }
 
 }

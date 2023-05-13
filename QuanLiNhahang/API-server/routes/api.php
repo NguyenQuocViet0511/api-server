@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\MaterialBillController;
 use App\Http\Controllers\Api\MaterialBillInfoController;
 
 use App\Http\Controllers\Api\InventoryController;
+use App\Http\Controllers\Api\HistoryInventoryController;
 
 
 
@@ -128,6 +129,16 @@ Route::prefix('inventory')->group(function () {
     Route::post('delete', [InventoryController::Class,'delete']);
     Route::get('CreateOrUpdate', [InventoryController::Class,'CreateOrUpdate']);
     Route::post('show', [InventoryController::Class,'show']);
+
+
+});
+Route::prefix('historyinventory')->group(function () {
+    Route::get('list', [HistoryInventoryController::Class,'getAll']);
+    Route::get('create', [HistoryInventoryController::Class,'create']);
+    Route::post('update', [HistoryInventoryController::Class,'update']);
+    Route::post('delete', [HistoryInventoryController::Class,'delete']);
+    Route::get('CreateOrUpdate', [HistoryInventoryController::Class,'CreateOrUpdate']);
+    Route::post('show', [HistoryInventoryController::Class,'show']);
 
 
 });

@@ -31,6 +31,9 @@ use  App\Repositories\MaterialBill\MaterialBillRepositoryInterface;
 
 use  App\Repositories\Inventory\InventoryRepository;
 use  App\Repositories\Inventory\InventoryRepositoryInterface;
+
+use  App\Repositories\HistoryInventory\HistoryInventoryRepository;
+use  App\Repositories\HistoryInventory\HistoryInventoryRepositoryInterface;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -52,6 +55,8 @@ class AppServiceProvider extends ServiceProvider
         MaterialBillRepositoryInterface::class => MaterialBillRepository::class,
         MaterialBillInfoRepositoryInterface::class => MaterialBillInfoRepository::class,
         InventoryRepositoryInterface::class => InventoryRepository::class,
+        HistoryInventoryRepositoryInterface::class => HistoryInventoryRepository::class,
+
 
 
 

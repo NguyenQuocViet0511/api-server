@@ -72,10 +72,6 @@ class MaterialBillInfoController extends BaseApiController
     public function CreateOrUpdate(Request $rq)
     {
         $data = $rq -> all();
-        // $data['id_material'] = 'MT000001';
-        // $data['id_material_bill'] = 'HD000001';
-        // $data['count'] = '2';
-        // $data['id_user'] = 'US000000';
         $result = $this -> _MaterialBillInfoService -> CreateOrUpdate($data);
         return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.add-success')]));
 
