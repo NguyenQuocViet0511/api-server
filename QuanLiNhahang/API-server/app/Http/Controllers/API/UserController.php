@@ -24,8 +24,8 @@ class UserController extends BaseApiController
 
     public function create(Request $rq)
     {
-        $table = $rq->all();
-        $result = $this->_UserService->create($table);
+        $data = $rq->all();
+        $result = $this->_UserService->create($data);
         if ($result) {
             return $this->successResponse(  $result, __('user.add-success'));
         }
@@ -35,8 +35,8 @@ class UserController extends BaseApiController
 
     public function update(Request $rq)
     {
-        $table = $rq->all();
-        $result = $this-> _UserService->update($table['id'],$table);
+        $data = $rq->all();
+        $result = $this-> _UserService->update($data['id'],$data);
         if ($result) {
             return $this->successResponse("", __('user.edit-success'));
         }
@@ -44,19 +44,19 @@ class UserController extends BaseApiController
     }
     public function delete(Request $rq)
     {
-        $table = $rq->all();
-        $result = $this->_UserService->delete($table['id']);
+        $data = $rq->all();
+        $result = $this->_UserService->delete($data['id']);
         if ($result) {
             return $this->successResponse($result, __('user.delete-success'));
         }
         return $this->successResponse($result, __('user.delete-fail'));
     }
 
-    public function show(Request $rq)
+    public function login(Request $rq)
     {
 
-        $table = $rq->all();
-        $result = $this->_UserService->ShowStatus($table['status']);
+        $data = $rq->all();
+        $result = $this->_UserService->getUserAndRole($data);
         return $this->successResponse($result, __('validation.list', ['attribute' => __('user.name')]));
 
     }

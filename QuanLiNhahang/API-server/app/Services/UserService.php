@@ -34,6 +34,7 @@ class UserService extends BaseService
             $data['id'] = insertStringID('US',$getId,6);
             $data['username'] =  $data['id'];
             $data['password'] = $data['id'];
+            $data['image'] = (String)$data['image'];
             $this->repo->create($data);
             $this->repo->commitTran();
             return  true;
@@ -64,13 +65,15 @@ class UserService extends BaseService
     }
     public function update($condition = [], $data = [])
     {
+
+        $data['image'] = (String)$data['image'];
         $this->repo->update($condition, $data);
         return true;
     }
 
-    public function GetBill()
+    public function getUserAndRole($data)
     {
-      return  $this -> repo -> GetBill();
+      return  $this -> repo -> getUserAndRole($data);
     }
 
 }

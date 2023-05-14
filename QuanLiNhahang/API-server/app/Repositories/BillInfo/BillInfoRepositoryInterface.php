@@ -8,5 +8,6 @@ interface BillInfoRepositoryInterface extends BaseRepositoryInterface
 {
 
     public function GetJoin($data);
+    public function GetJoinBill($data);
     public function checkExist($id,$id_bill);
 }

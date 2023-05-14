@@ -21,7 +21,7 @@ class BillService extends BaseService
 
     public function getAll()
     {
-        return $this->repo->getAll();
+        return $this->repo-> GetBillEryday();
     }
     public function get()
     {
@@ -35,16 +35,25 @@ class BillService extends BaseService
 
     public function create($data = [])
     {
-        try {
-            $this->repo->beginTran();
+
             $this->repo->create($data);
-            $this->repo->commitTran();
             return true;
 
-        } catch (\Throwable$th) {
-            $this->repo->rollbackTran();
-            throw $th;
-        }
+    }
+    public function CreateOut($data)
+    {
+        $getByID = $this ->  repo -> getOderById('id','desc',1);
+        $bill = [
+            'id' => insertStringID('HD',$getByID,6),
+            'timein' => date_create(),
+            'discount' => 0,
+            'sum' => 0,
+            'status' => 'Mang Về',
+            'id_user' => $data['id_user'],
+
+        ];
+        $this->repo->create($bill);
+            return true;
     }
 
     public function GetId()
@@ -102,4 +111,9 @@ class BillService extends BaseService
     {
         return $this -> repo -> checkExist($data);
     }
+    public function GetBillOut()
+    {
+        return $this -> repo -> GetBillOut();
+    }
+
 }

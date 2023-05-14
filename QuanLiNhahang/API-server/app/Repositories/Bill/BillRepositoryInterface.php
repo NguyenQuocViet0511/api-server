@@ -11,4 +11,6 @@ interface BillRepositoryInterface extends BaseRepositoryInterface
 
     public function checkExist($id);
 
+    public function GetBillEryday();
+    public function GetBillOut();
 }

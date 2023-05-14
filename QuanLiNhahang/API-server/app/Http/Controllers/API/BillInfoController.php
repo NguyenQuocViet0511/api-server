@@ -75,4 +75,12 @@ class BillInfoController extends BaseApiController
         return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.add-success')]));
 
     }
+
+    public function GetJoinBill(Request $rq)
+    {
+        $data = $rq -> all();
+        $result = $this -> _BillInfoService -> GetJoinBill($data);
+        return $this->successResponse($result, __('validation.list', ['attribute' => __('billinfo.name')]));
+
+    }
 }

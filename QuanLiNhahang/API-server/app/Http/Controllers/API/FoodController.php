@@ -24,7 +24,7 @@ class FoodController extends BaseApiController
 
     public function create(Request $rq)
     {
-        $food = $rq->all();
+       $food = $rq->all();
         $result = $this->_foodService->create($food);
         if ($result) {
             return $this->successResponse($result, __('food.add-success'));

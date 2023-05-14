@@ -32,7 +32,6 @@ class MaterialBillService extends BaseService
     public function create($data = [])
     {
         try {
-            $this->repo->beginTran();
             $getId = $this ->  repo -> getOderById('id','desc',1);
             $bill = [
                 'id' => insertStringID('HD',$getId,6),
@@ -43,11 +42,9 @@ class MaterialBillService extends BaseService
 
             ];
             $this->repo->create($bill);
-            $this->repo->commitTran();
             return true;
 
         } catch (\Throwable$th) {
-            $this->repo->rollbackTran();
             throw $th;
         }
     }

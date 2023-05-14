@@ -66,10 +66,11 @@ Route::prefix('category')->group(function () {
 });
 Route::prefix('bill')->group(function () {
     Route::get('list', [BillController::Class,'getAll']);
-    Route::get('create', [BillController::Class,'create']);
+    Route::post('create', [BillController::Class,'create']);
     Route::post('update', [BillController::Class,'update']);
     Route::delete('delete', [BillController::Class,'delete']);
     Route::get('show', [BillController::Class,'show']);
+    Route::get('GetBillOut', [BillController::Class,'GetBillOut']);
 
 
 });
@@ -81,6 +82,8 @@ Route::prefix('BillInfo')->group(function () {
     Route::post('delete', [BillInfoController::Class,'delete']);
     Route::post('show', [BillInfoController::Class,'show']);
     Route::post('CreateOrUpdate', [BillInfoController::Class,'CreateOrUpdate']);
+    Route::post('GetJoinBill', [BillInfoController::Class,'GetJoinBill']);
+
 
 });
 Route::prefix('users')->group(function () {
@@ -88,7 +91,7 @@ Route::prefix('users')->group(function () {
     Route::post('create', [UserController::Class,'create']);
     Route::post('update', [UserController::Class,'update']);
     Route::post('delete', [UserController::Class,'delete']);
-    Route::get('show', [UserController::Class,'show']);
+    Route::post('login', [UserController::Class,'login']);
 
 
 });

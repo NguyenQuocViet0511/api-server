@@ -32,6 +32,7 @@ class FoodService extends BaseService
             $this->repo->beginTran();
             $getId = $this ->  repo -> getOderById('id','desc',1);
             $data['id'] = insertStringID('FD',$getId,6);
+            $data['image'] = (String)$data['image'];
             $data['count'] = 0;
             $this->repo->create($data);
             $this->repo->commitTran();
@@ -64,6 +65,7 @@ class FoodService extends BaseService
     public function update($condition = [], $data = [])
     {
         $this->repo->update($condition, $data);
+        $data['image'] = (String)$data['image'];
         return true;
     }
 

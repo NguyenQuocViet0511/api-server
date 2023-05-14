@@ -25,7 +25,7 @@ class BillController extends BaseApiController
     public function create(Request $rq)
     {
         $Bill = $rq->all();
-        $result = $this->_BillService->create($Bill);
+        $result = $this->_BillService->CreateOut($Bill);
         if ($result) {
             return $this->successResponse($result, __('bill.add-success'));
         }
@@ -63,5 +63,13 @@ class BillController extends BaseApiController
         return $this->successResponse($result, __('bill.name'));
 
     }
+    public function GetBillOut()
+    {
+        $result = $this->_BillService-> GetBillOut();
+        return $this->successResponse($result, __('bill.name'));
+
+    }
+
+
 
 }

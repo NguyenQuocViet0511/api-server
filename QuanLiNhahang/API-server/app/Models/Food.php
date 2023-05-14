@@ -29,6 +29,7 @@ class Food extends Model
         'name',
         'price',
         'discount',
+        'image',
         'count',
         'status',
         'id_category',

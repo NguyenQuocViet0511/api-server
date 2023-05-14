@@ -31,6 +31,7 @@ class User extends Authenticatable
         'date',
         'sex',
         'number',
+        'image',
         'address',
         'id_role',
         'status',

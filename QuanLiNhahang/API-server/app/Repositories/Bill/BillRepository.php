@@ -5,6 +5,10 @@ namespace App\Repositories\Bill;
 use App\Models\Bill;
 use App\Repositories\Bill\BillRepositoryInterface;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
+
+use Carbon\Carbon;
+
 
 class BillRepository extends BaseRepository implements BillRepositoryInterface
 {
@@ -25,12 +29,25 @@ class BillRepository extends BaseRepository implements BillRepositoryInterface
     }
 
     public function checkExist($id){
-        $data = $this-> model -> where('id','=',$id) -> where('status','No')-> count();
+        $data = $this-> model -> where('id','=',$id) -> count();
         if($data > 0)
         {
             return true;
         }
         return false;
+    }
+    public function GetBillEryday(){
+            $data = $this -> model
+            ->select(DB::raw('Sum(sum) as sum,Date(timein) as timein'))
+            ->groupBy(DB::raw('Date(timein)')) ->get();
+            $total = count($data);
+             return ['total' => $total, 'data' => $data];
+    }
+    public function GetBillOut()
+    {
+        $data = $this -> model -> where('status','=','Mang Về')-> get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
     }
 
 }
