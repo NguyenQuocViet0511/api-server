@@ -10,6 +10,7 @@ interface HistoryInventoryRepositoryInterface extends BaseRepositoryInterface
     public function checkExist($id);
 
     public function GetJoin();
+    public function Gethistory();
 
 
 }

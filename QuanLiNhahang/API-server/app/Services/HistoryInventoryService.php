@@ -21,7 +21,7 @@ class HistoryInventoryService extends BaseService
 
     public function getAll()
     {
-        return $this->repo->GetJoin();
+        return $this->repo->Gethistory();
     }
     public function GetByStatus(){
         return $this -> repo -> GetByStatus();
