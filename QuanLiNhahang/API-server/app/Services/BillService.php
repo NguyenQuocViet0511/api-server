@@ -90,14 +90,19 @@ class BillService extends BaseService
 
         }
         $bill -> update(array('status' => 'Yes','sum' => $data['sum'],'timeout' => date_create()));
-        $table = $this -> _table -> find($data['id_table']);
-        $table -> update(array('status'=> 'No','id_bill' => NULL));
+        if(!empty($data['id_table']))
+        {
+            $table = $this -> _table -> find($data['id_table']);
+            $table -> update(array('status'=> 'No','id_bill' => NULL));
+            $this->repo->commitTran();
+            return true;
+        }
+
         $this->repo->commitTran();
         return true;
+
         }
         catch (\Throwable$th) {
-
-            $this->repo->rollbackTran();
 
             throw $th;
         }

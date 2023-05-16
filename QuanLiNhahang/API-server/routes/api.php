@@ -136,12 +136,12 @@ Route::prefix('inventory')->group(function () {
 
 });
 Route::prefix('historyinventory')->group(function () {
-    Route::get('list', [HistoryInventoryController::Class,'getAll']);
+    Route::get('list', [HistoryInventoryController::Class,'Gethistory']);
     Route::get('create', [HistoryInventoryController::Class,'create']);
     Route::post('update', [HistoryInventoryController::Class,'update']);
     Route::post('delete', [HistoryInventoryController::Class,'delete']);
     Route::get('CreateOrUpdate', [HistoryInventoryController::Class,'CreateOrUpdate']);
-    Route::post('show', [HistoryInventoryController::Class,'show']);
+    Route::get('all', [HistoryInventoryController::Class,'getAll']);
 
 
 });

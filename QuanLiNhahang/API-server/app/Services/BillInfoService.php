@@ -69,13 +69,18 @@ class BillInfoService extends BaseService
         try {
             $this->repo->beginTran();
             $result = $this->repo->checkExist($data['id'], $data['id_bill']);
-            $result ->where('id_bill',$data['id_bill'])->where('status','No') -> update(array('status' => 'Yes'));
-            $this->repo->commitTran();
-            return true;
-
+            if(!empty(  $result))
+            {
+                $result ->where('id_bill',$data['id_bill'])->where('status','No') -> update(array('status' => 'Yes'));
+                $this->repo->commitTran();
+                return true;
+            }
+            $this->repo->rollbackTran();
+            return false;
 
             // $this->repo->update($condition, $data);
         } catch (\Throwable $th) {
+            return false;
             throw $th;
         }
     }

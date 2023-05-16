@@ -14,6 +14,14 @@ class HistoryInventoryController extends BaseApiController
     {
         $this-> _HistoryInventoryService = $HistoryInventoryService;
     }
+    public function Gethistory()
+    {
+
+        $data = $this->_HistoryInventoryService->Gethistory();
+        return $this->successResponse($data, __('validation.list', ['attribute' => __('category.name')]));
+
+    }
+
     public function getAll()
     {
 
@@ -21,8 +29,6 @@ class HistoryInventoryController extends BaseApiController
         return $this->successResponse($data, __('validation.list', ['attribute' => __('category.name')]));
 
     }
-
-
 
 
 }

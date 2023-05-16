@@ -36,7 +36,7 @@ class BillInfoRepository extends BaseRepository implements BillInfoRepositoryInt
     }
 
     public function checkExist($id,$id_bill){
-        $data = $this-> model -> where('id','=',$id)->where('id_bill','=',$id_bill)-> where('status','No') -> first();
+        $data = $this-> model -> where('id','=',$id)->where('id_bill','=',$id_bill)->where('status','=','No')-> first();
         return $data;
     }
 

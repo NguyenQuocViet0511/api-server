@@ -19,12 +19,12 @@ class HistoryInventoryService extends BaseService
         $this ->  _InventoryRepositoryInterface = $InventoryRepositoryInterface;
     }
 
-    public function getAll()
+    public function Gethistory()
     {
         return $this->repo->Gethistory();
     }
-    public function GetByStatus(){
-        return $this -> repo -> GetByStatus();
+    public function getAll(){
+        return $this -> repo -> getAll();
     }
     public function get()
     {

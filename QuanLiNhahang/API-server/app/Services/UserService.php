@@ -69,6 +69,7 @@ class UserService extends BaseService
         $data['image'] = (String)$data['image'];
         $this->repo->update($condition, $data);
         return true;
+
     }
 
     public function getUserAndRole($data)
