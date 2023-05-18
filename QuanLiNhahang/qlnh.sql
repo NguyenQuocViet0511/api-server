@@ -401,11 +401,6 @@ INSERT INTO `materialbillinfo` (`id`, `id_materialbill`, `count`, `sum`, `create
 
 -- --------------------------------------------------------
 
---
--- Cấu trúc bảng cho bảng `migrations`
---
--- Error reading structure for table qlnh.migrations: #1932 - Table 'qlnh.migrations' doesn't exist in engine
--- Error reading data for table qlnh.migrations: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `qlnh`.`migrations`' at line 1
 
 -- --------------------------------------------------------
 

@@ -85,12 +85,25 @@ class BillInfoService extends BaseService
         }
     }
 
+
+
     public function CreateOrUpdate($data = [])
     {
 
         try {
             $this->repo->beginTran();
             //check bill exit
+            if(!empty($data['idTable']))
+            {
+                $checkbillintalbe =  $this -> _table -> find($data['idTable']);
+                if(!empty($checkbillintalbe['id_bill']))
+                {
+                    $data['id_bill'] = $checkbillintalbe['id_bill'];
+
+                }
+
+            }
+
             $CheckBill = $this-> _bill->checkExist($data['id_bill']);
             if ($CheckBill) {
                 //check billinfo exit
@@ -116,7 +129,7 @@ class BillInfoService extends BaseService
                  $price = $this->_food->find($data['id']);
                  $SumCount = ($data['count'] +  $result['count']);
                  $sum =  $SumCount * $price['price'];
-                 $result -> where('id',$data['id'])->where('id_bill',$data['id_bill'])->where('status','No') -> update(array('count' => $SumCount,'sum' => $sum));
+                 $result -> where('id',$data['id'])->where('id_bill',$data['id_bill'])->where('status','No') -> update(array('count' => $SumCount,'sum' => $sum,'note' => $data['note']));
                  $this->repo->commitTran();
                  return true;
 
