@@ -72,9 +72,16 @@ class UserService extends BaseService
 
     }
 
+    public function changePassword($data)
+    {
+        $result = $this -> repo -> find($data['id']);
+        $result -> update(array('password' => $data['password']));
+        return true;
+    }
     public function getUserAndRole($data)
     {
       return  $this -> repo -> getUserAndRole($data);
     }
+
 
 }

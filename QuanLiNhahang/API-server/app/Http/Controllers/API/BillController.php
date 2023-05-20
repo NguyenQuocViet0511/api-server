@@ -70,6 +70,14 @@ class BillController extends BaseApiController
 
     }
 
+    public function GetBillByDate(Request $rq)
+    {
+        $date = $rq -> all();
+
+        $result = $this->_BillService-> GetBillByDate($date);
+        return $this->successResponse($result, __('bill.name'));
+
+    }
 
 
 }

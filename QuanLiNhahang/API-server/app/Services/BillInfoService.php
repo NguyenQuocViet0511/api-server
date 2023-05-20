@@ -35,7 +35,10 @@ class BillInfoService extends BaseService
     {
         return $this->repo->get();
     }
-
+    public function create()
+    {
+        return $this->repo->get();
+    }
     public function getById($id)
     {
         return $this->repo->find($id);
@@ -187,5 +190,9 @@ class BillInfoService extends BaseService
     public function GetJoinBill($id)
     {
         return $this->repo->GetJoinBill($id);
+    }
+    public function GetBillByID($id)
+    {
+        return $this->repo->GetBillByID($id);
     }
 }

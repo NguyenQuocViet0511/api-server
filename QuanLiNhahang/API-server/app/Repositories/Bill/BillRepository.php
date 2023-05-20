@@ -28,6 +28,17 @@ class BillRepository extends BaseRepository implements BillRepositoryInterface
         return ['total' => $total, 'data' => $data];
     }
 
+    public function GetbyDate($date){
+
+        $data = $this-> model
+        ->select(DB::raw('*,Date(timein) as timein'))
+        ->whereDate('timein','=', $date)
+        ->get();
+        // ->select('bill.*') -> where('timein','=',$date)
+        // ->get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
+    }
     public function checkExist($id){
         $data = $this-> model -> where('id','=',$id) -> count();
         if($data > 0)

@@ -60,5 +60,16 @@ class UserController extends BaseApiController
         return $this->successResponse($result, __('validation.list', ['attribute' => __('user.name')]));
 
     }
+    public function changePassword(Request $rq)
+    {
+        $data = $rq->all();
+        $result = $this -> _UserService -> changePassword($data);
+        if($result)
+        {
+            return $this->successResponse($result, __('validation.list', ['attribute' => __('user.edit-success')]));
+
+        }
+
+    }
 
 }

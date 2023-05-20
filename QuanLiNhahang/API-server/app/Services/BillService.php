@@ -25,7 +25,7 @@ class BillService extends BaseService
     }
     public function get()
     {
-        return $this->repo->get();
+        return $this->repo->getAll();
     }
 
     public function getById($id)
@@ -121,4 +121,8 @@ class BillService extends BaseService
         return $this -> repo -> GetBillOut();
     }
 
+    public function GetBillByDate($date)
+    {
+        return $this -> repo -> GetbyDate($date);
+    }
 }
