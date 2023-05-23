@@ -64,8 +64,12 @@ class FoodService extends BaseService
     }
     public function update($condition = [], $data = [])
     {
+        if(!empty($data['image']))
+        {
+            $data['image'] = (String)$data['image'];
+
+        }
         $this->repo->update($condition, $data);
-        $data['image'] = (String)$data['image'];
         return true;
     }
 

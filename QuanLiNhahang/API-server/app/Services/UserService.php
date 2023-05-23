@@ -66,7 +66,11 @@ class UserService extends BaseService
     public function update($condition = [], $data = [])
     {
 
-        $data['image'] = (String)$data['image'];
+        if(!empty($data['image']))
+        {
+            $data['image'] = (String)$data['image'];
+
+        }
         $this->repo->update($condition, $data);
         return true;
 
