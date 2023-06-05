@@ -125,4 +125,12 @@ class BillService extends BaseService
     {
         return $this -> repo -> GetbyDate($date);
     }
+    public function GetStartAndEnd($start, $end)
+    {
+        return $this -> repo -> GetStartAndEnd($start,$end);
+    }
+    public function GetToday($today)
+    {
+        return $this -> repo -> GetToday($today);
+    }
 }

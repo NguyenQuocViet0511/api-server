@@ -55,7 +55,6 @@ interface BaseRepositoryInterface
      * @param array $attributes
      * @return mixed
      */
-    public function createOrUpdate(int $id, $attributes = []);
 
     public function GetByStatus();
     /**

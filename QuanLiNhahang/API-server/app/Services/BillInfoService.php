@@ -177,7 +177,7 @@ class BillInfoService extends BaseService
         } catch (\Throwable $th) {
 
             $this->repo->rollbackTran();
-
+            return false;
             throw $th;
         }
 

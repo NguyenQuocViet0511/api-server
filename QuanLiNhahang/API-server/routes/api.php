@@ -72,6 +72,9 @@ Route::prefix('bill')->group(function () {
     Route::get('show', [BillController::class,'show']);
     Route::get('GetBillOut', [BillController::class,'GetBillOut']);
     Route::post('GetBillByDate', [BillController::class,'GetBillByDate']);
+    Route::post('GetStartAndEnd', [BillController::class,'GetStartAndEnd']);
+    Route::get('GetToday', [BillController::class,'GetToday']);
+
 
 
 

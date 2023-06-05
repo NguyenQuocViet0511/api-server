@@ -60,5 +60,18 @@ class BillRepository extends BaseRepository implements BillRepositoryInterface
         $total = count($data);
         return ['total' => $total, 'data' => $data];
     }
+    public function GetStartAndEnd($start,$end)
+    {
+        $data = $this -> model -> whereBetween('timein',[$start,$end])-> get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
+    }
+    public function GetToday($today)
+    {
+        $data = $this ->  model -> select(DB::raw('Date(timein) as timein' ))
+        ->where('timein','=',$today)->get();
+        $total = count($data);
+        return ['total' => $total, 'data' => $data];
+    }
 
 }

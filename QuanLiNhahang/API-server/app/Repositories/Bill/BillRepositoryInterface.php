@@ -13,4 +13,6 @@ interface BillRepositoryInterface extends BaseRepositoryInterface
 
     public function GetBillEryday();
     public function GetBillOut();
+    public function GetStartAndEnd($start,$end);
+
 }

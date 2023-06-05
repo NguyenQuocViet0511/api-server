@@ -79,5 +79,22 @@ class BillController extends BaseApiController
 
     }
 
+    public function GetStartAndEnd(Request $rq)
+    {
+        $date = $rq -> all();
+
+        $result = $this->_BillService-> GetStartAndEnd($date['start'],$date['end']);
+        return $this->successResponse($result, __('bill.name'));
+
+    }
+    public function GetToday(Request $rq)
+    {
+        $date = $rq -> all();
+
+        $result = $this->_BillService-> GetToday('2023-06-05');
+        return $this->successResponse($result, __('bill.name'));
+
+    }
+
 
 }

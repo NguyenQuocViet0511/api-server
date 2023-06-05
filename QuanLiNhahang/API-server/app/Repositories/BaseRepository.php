@@ -86,17 +86,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $result ? $result : false;
     }
 
-    public function createOrUpdate($id, $attributes = [])
-    {
-        if ($id == null) {
-            $attributes['id'] = generateRandomString();
-            $result = $this->model->create($attributes);
-        } else {
-            $result = $this->model->where('id', $id)->update($attributes);
-        }
-
-        return $result ? $result : false;
-    }
+    
 
     public function delete($id)
     {
